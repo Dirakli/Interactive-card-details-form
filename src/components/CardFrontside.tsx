@@ -5,7 +5,7 @@ type FrontsideWrapperProps = {
     background: string;
 }
 
-function CardFrontside({cardNumber, firstname}: {cardNumber: any, firstname: any}) {
+function CardFrontside({cardNumber, firstname, month, year}: {year: any,month: any, cardNumber: any, firstname: any}) {
     return (
         <FrontsideWrapper background={frontsideImage} >
             <TwoRoundWrapper>
@@ -13,11 +13,11 @@ function CardFrontside({cardNumber, firstname}: {cardNumber: any, firstname: any
                 <SmallRound></SmallRound>
             </TwoRoundWrapper>
             <SixteenDigits>
-            {cardNumber}
+            {cardNumber ? cardNumber : "0000000000000000"}
             </SixteenDigits>
             <PersonNameAndDate>
-                <PersonName>{firstname}</PersonName>
-                <Date>00/00</Date>
+                <PersonName>{firstname ? firstname : "Jane Appleseed"}</PersonName>
+                <Date>{month ? month : "00"}/{year ? year : "00"}</Date>
             </PersonNameAndDate>
         </FrontsideWrapper>
     )

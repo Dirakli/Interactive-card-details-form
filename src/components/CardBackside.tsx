@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-function CardBackside() {
+function CardBackside({expire}: {expire: any}) {
     return (
         <BacksideWrapper>
             <BlackLine></BlackLine>
             <SilverLine>
-                <CvcCode>000</CvcCode>
+                <CvcCode>{expire ? expire : "000"}</CvcCode>
             </SilverLine>
         </BacksideWrapper>
     )

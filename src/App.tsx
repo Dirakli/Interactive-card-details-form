@@ -1,16 +1,54 @@
 import { createGlobalStyle } from "styled-components"
+import styled from "styled-components"
+import PurpleImage from "/public/assets/bg-main-mobile.png"
+import CardBackside from "./components/CardBackside"
+import CardFrontside from "./components/CardFrontside"
+import CardDetails from "./components/CardDetails"
+import { useState } from "react"
 
 function App() {
+	const [cardNumber, setCardNumber] = useState<any>("");
+	const [firstname, setFirstname] = useState<any>("");
+	const [month, setMonth] = useState<any>("");
+	const [year, setYear] = useState<any>("");
+	const [expire, setExpire] = useState<any>("");
 
-
-  return (
-    <div>
-      hi
-    </div>
-  )
+	return (
+		<MainWrapper>
+			<PurpleDiv Image={PurpleImage} ></PurpleDiv>
+			<CardBackside expire={expire}/>
+			<CardFrontside cardNumber={cardNumber} firstname={firstname} month={month} year={year} />
+			<CardDetails
+				cardNumber={cardNumber}
+				setCardNumber={setCardNumber}
+				setFirstname={setFirstname}
+				firstname={firstname}
+				month={month}
+				setMonth={setMonth}
+				year={year}
+				setYear={setYear}
+				expire={expire}
+				setExpire={setExpire}
+			/>
+		</MainWrapper>
+	)
 }
 
+const PurpleDiv = styled.div<any>`
+  width: 375px;
+  position: absolute;
+  height: 240px;
+  background-image: url(${(props) => props.Image});
+`
 
+const MainWrapper = styled.div`
+  width: 375px;
+  margin: 0 auto;
+  height: 704px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`
 
 const GlobalStyles = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -68,4 +106,4 @@ textarea {
 }
 `
 
-export default App
+export default App;
