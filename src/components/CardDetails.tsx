@@ -1,10 +1,23 @@
 import { useState } from "react";
 import styled from "styled-components";
+import CompletePic from "/assets/icon-complete.svg";
 
 function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstname, firstname, month, setMonth, year, setYear }: { expire: any, setExpire: any, year: any, setYear: any, month: any, setMonth: any, setCardNumber: any, cardNumber: any, setFirstname: any, firstname: any }) {
 
+  const [hide, setHide] = useState<boolean>(false);
 
+  function handleComplete() {
+    return (
+      setHide(!hide)
+    )
+  }
   function handleCardNumberChange(e: any) {
+
+
+
+
+
+
     const numbers = e.target.value.replace(/\D/g, "").replace(/\s/g, '') // Remove any existing spaces
       .replace(/(.{4})/g, '$1 ') // Add a space after every 4 characters
       .trim();
@@ -38,66 +51,105 @@ function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstnam
     return setExpire(formattedCvc)
 
   }
+  function handleClick(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <CardDetailsWrapper>
-      <form>
-        <Label>
-          Cardholder Name
-          <Input
-            maxLength={50}
-            type="text"
-            placeholder="e.g. Jane Appleseed"
-            name="firstname"
-            value={firstname}
-            onChange={handleFirstnameChange}
-          >
+      <div >
+        {!hide ? <div>
+          <Label>
+            Cardholder Name
+            <Input
+              maxLength={50}
+              type="text"
+              placeholder="e.g. Jane Appleseed"
+              name="firstname"
+              value={firstname}
+              onChange={handleFirstnameChange}
+            >
 
-          </Input>
-        </Label>
-        <Label style={{ marginTop: "20px" }} >
-          Card Number
-          <Input
-            type="text"
-            maxLength={19}
-            name="cardNumber"
-            value={cardNumber}
-            onChange={handleCardNumberChange}
-            placeholder="e.g. 1234 5678 9123 0000"
-          >
+            </Input>
+          </Label>
+          <Label style={{ marginTop: "20px" }} >
+            Card Number
+            <Input
+              type="text"
+              maxLength={19}
+              name="cardNumber"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              placeholder="e.g. 1234 5678 9123 0000"
+            >
 
-          </Input>
-        </Label>
-        <Label style={{ marginTop: "20px" }} >
-          Exp. Date (MM/YY) CVC
-          <ThreeInputWrapper >
-            <FirstAndSecondInput
-              onChange={handleMonthChange}
-              placeholder="MM"
-              value={month}
-              name="month"
-              maxLength={2}></FirstAndSecondInput>
-            <FirstAndSecondInput
-              placeholder="YY"
-              onChange={handleYearChange}
-              value={year}
-              name="year"
-              maxLength={2}
-            ></FirstAndSecondInput>
-            <SecondInput
-              className="second-input"
-              placeholder="e.g. 123"
-              onChange={handlecvcChange}
-              value={expire}
-              name="expire"
-              maxLength={3}
-            ></SecondInput>
-          </ThreeInputWrapper>
-        </Label>
-        <Button>Confirm</Button>
-      </form>
+            </Input>
+          </Label>
+          <Label style={{ marginTop: "20px" }} >
+            Exp. Date (MM/YY) CVC
+            <ThreeInputWrapper >
+              <FirstAndSecondInput
+                onChange={handleMonthChange}
+                placeholder="MM"
+                value={month}
+                name="month"
+                maxLength={2}></FirstAndSecondInput>
+              <FirstAndSecondInput
+                placeholder="YY"
+                onChange={handleYearChange}
+                value={year}
+                name="year"
+                maxLength={2}
+              ></FirstAndSecondInput>
+              <SecondInput
+                className="second-input"
+                placeholder="e.g. 123"
+                onChange={handlecvcChange}
+                value={expire}
+                name="expire"
+                maxLength={3}
+              ></SecondInput>
+            </ThreeInputWrapper>
+          </Label>
+        </div> :
+          <CardCompleteWrapper>
+            <img src={CompletePic} ></img>
+            <ThansWord>THANK YOU!</ThansWord>
+            <AdditionText>We ve added your card details</AdditionText>
+          </CardCompleteWrapper>}
+        <Button onClick={handleComplete} >Confirm</Button>
+      </div>
     </CardDetailsWrapper>
   )
 }
+
+
+const AdditionText = styled.p`
+  font-size: 18px;
+  line-height: 22.97px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  color: rgba(143, 134, 148, 1);
+`
+
+const ThansWord = styled.span`
+  font-size: 28px;
+  line-height: 35.73px;
+  letter-spacing: 3.42 px;
+  font-family: 'Space Grotesk', sans-serif;;
+  font-weight: 500;
+  color: rgba(33, 9, 47, 1);
+`
+
+const CardCompleteWrapper = styled.div`
+  width: 327px;
+  margin-top: 25px;
+  height: 238px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`
 
 const SecondInput = styled.input`
   padding-left: 16px;
