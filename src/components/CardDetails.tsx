@@ -13,13 +13,13 @@ function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstnam
 
 
   function handleComplete() {
-    if(expire !== "" && cardNumber !== "" && firstname !== "" && month !== "" && year !== "")
+    if (expire !== "" && cardNumber !== "" && firstname !== "" && month !== "" && year !== "")
       setHide(true);
-}
+  }
 
-function handlerReset() {
-  if(expire && cardNumber && firstname && month && year)
-    setHide(false);
+  function handlerReset() {
+    if (expire && cardNumber && firstname && month && year)
+      setHide(false);
     setCardNumber("");
     setMonth("");
     setYear("");
@@ -27,7 +27,7 @@ function handlerReset() {
     setFirstname("");
     setError(false)
 
-}
+  }
 
   function handleCardNumberChange(e: any) {
 
@@ -74,8 +74,8 @@ function handlerReset() {
         {!hide ? <div>
           <Label>
             Cardholder Name
-            <Input style={{borderColor: firstname == "" && error ? "#FF5050" : "#DFDEE0"}}
-              maxLength={50}
+            <Input style={{ borderColor: firstname == "" && error ? "#FF5050" : "#DFDEE0" }}
+              maxLength={30}
               type="text"
               placeholder="e.g. Jane Appleseed"
               name="firstname"
@@ -87,7 +87,7 @@ function handlerReset() {
           <ErrorMessage>{firstname == "" ? (error ? "can not be empty" : "") : ""}</ErrorMessage>
           <Label style={{ marginTop: "20px" }} >
             Card Number
-            <Input style={{borderColor: cardNumber == "" && error ? "#FF5050" : "#DFDEE0"}}
+            <Input style={{ borderColor: cardNumber == "" && error ? "#FF5050" : "#DFDEE0" }}
               type="text"
               maxLength={19}
               name="cardNumber"
@@ -101,20 +101,20 @@ function handlerReset() {
           <Label style={{ marginTop: "20px" }} >
             Exp. Date (MM/YY) CVC
             <ThreeInputWrapper >
-              <FirstAndSecondInput style={{borderColor: month == "" && error ? "#FF5050" : "#DFDEE0"}}
+              <FirstAndSecondInput style={{ borderColor: month == "" && error ? "#FF5050" : "#DFDEE0" }}
                 onChange={handleMonthChange}
                 placeholder="MM"
                 value={month}
                 name="month"
                 maxLength={2}></FirstAndSecondInput>
-              <FirstAndSecondInput style={{borderColor: year == "" && error ? "#FF5050" : "#DFDEE0"}}
+              <FirstAndSecondInput style={{ borderColor: year == "" && error ? "#FF5050" : "#DFDEE0" }}
                 placeholder="YY"
                 onChange={handleYearChange}
                 value={year}
                 name="year"
                 maxLength={2}
               ></FirstAndSecondInput>
-              <SecondInput style={{borderColor: firstname == "" && error ? "#FF5050" : "#DFDEE0"}}
+              <SecondInput style={{ borderColor: firstname == "" && error ? "#FF5050" : "#DFDEE0" }}
                 className="second-input"
                 placeholder="e.g. 123"
                 onChange={handlecvcChange}
@@ -131,8 +131,8 @@ function handlerReset() {
             <ThansWord>THANK YOU!</ThansWord>
             <AdditionText>We ve added your card details</AdditionText>
           </CardCompleteWrapper>}
-        {!hide ? <Button onClick={() => { handleComplete(), handleChange()}} >confirm</Button> : 
-        <Button onClick={() => { handlerReset()}} >continue</Button>}
+        {!hide ? <Button onClick={() => { handleComplete(), handleChange() }} >confirm</Button> :
+          <Button onClick={() => { handlerReset() }} >continue</Button>}
       </div>
     </CardDetailsWrapper>
   )
