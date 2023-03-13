@@ -5,18 +5,31 @@ import CompletePic from "/assets/icon-complete.svg";
 function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstname, firstname, month, setMonth, year, setYear }: { expire: any, setExpire: any, year: any, setYear: any, month: any, setMonth: any, setCardNumber: any, cardNumber: any, setFirstname: any, firstname: any }) {
 
   const [hide, setHide] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+
+  function handleChange() {
+    return setError(true)
+  }
+
 
   function handleComplete() {
-    return (
-      setHide(!hide)
-    )
-  }
+    if(expire !== "" && cardNumber !== "" && firstname !== "" && month !== "" && year !== "")
+      setHide(true);
+}
+
+function handlerReset() {
+  if(expire && cardNumber && firstname && month && year)
+    setHide(false);
+    setCardNumber("");
+    setMonth("");
+    setYear("");
+    setExpire("");
+    setFirstname("");
+    setError(false)
+
+}
+
   function handleCardNumberChange(e: any) {
-
-
-
-
-
 
     const numbers = e.target.value.replace(/\D/g, "").replace(/\s/g, '') // Remove any existing spaces
       .replace(/(.{4})/g, '$1 ') // Add a space after every 4 characters
@@ -61,7 +74,7 @@ function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstnam
         {!hide ? <div>
           <Label>
             Cardholder Name
-            <Input
+            <Input style={{borderColor: firstname == "" && error ? "#FF5050" : "#DFDEE0"}}
               maxLength={50}
               type="text"
               placeholder="e.g. Jane Appleseed"
@@ -69,12 +82,12 @@ function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstnam
               value={firstname}
               onChange={handleFirstnameChange}
             >
-
             </Input>
           </Label>
+          <ErrorMessage>{firstname == "" ? (error ? "can not be empty" : "") : ""}</ErrorMessage>
           <Label style={{ marginTop: "20px" }} >
             Card Number
-            <Input
+            <Input style={{borderColor: cardNumber == "" && error ? "#FF5050" : "#DFDEE0"}}
               type="text"
               maxLength={19}
               name="cardNumber"
@@ -82,26 +95,26 @@ function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstnam
               onChange={handleCardNumberChange}
               placeholder="e.g. 1234 5678 9123 0000"
             >
-
             </Input>
           </Label>
+          <ErrorMessage>{cardNumber == "" ? (error ? "can not be empty" : "") : ""}</ErrorMessage>
           <Label style={{ marginTop: "20px" }} >
             Exp. Date (MM/YY) CVC
             <ThreeInputWrapper >
-              <FirstAndSecondInput
+              <FirstAndSecondInput style={{borderColor: month == "" && error ? "#FF5050" : "#DFDEE0"}}
                 onChange={handleMonthChange}
                 placeholder="MM"
                 value={month}
                 name="month"
                 maxLength={2}></FirstAndSecondInput>
-              <FirstAndSecondInput
+              <FirstAndSecondInput style={{borderColor: year == "" && error ? "#FF5050" : "#DFDEE0"}}
                 placeholder="YY"
                 onChange={handleYearChange}
                 value={year}
                 name="year"
                 maxLength={2}
               ></FirstAndSecondInput>
-              <SecondInput
+              <SecondInput style={{borderColor: firstname == "" && error ? "#FF5050" : "#DFDEE0"}}
                 className="second-input"
                 placeholder="e.g. 123"
                 onChange={handlecvcChange}
@@ -111,18 +124,32 @@ function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstnam
               ></SecondInput>
             </ThreeInputWrapper>
           </Label>
+          <ErrorMessage>{month == "" || year == "" || expire == "" ? (error ? "can not be empty" : "") : ""}</ErrorMessage>
         </div> :
           <CardCompleteWrapper>
             <img src={CompletePic} ></img>
             <ThansWord>THANK YOU!</ThansWord>
             <AdditionText>We ve added your card details</AdditionText>
           </CardCompleteWrapper>}
-        <Button onClick={handleComplete} >Confirm</Button>
+        {!hide ? <Button onClick={() => { handleComplete(), handleChange()}} >confirm</Button> : 
+        <Button onClick={() => { handlerReset()}} >continue</Button>}
       </div>
     </CardDetailsWrapper>
   )
 }
 
+const Meini = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const ErrorMessage = styled.p`
+  font-size: 12px;
+  line-height: 15.31px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  color: rgba(255, 80, 80, 1);  
+`
 
 const AdditionText = styled.p`
   font-size: 18px;

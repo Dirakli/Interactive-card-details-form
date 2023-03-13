@@ -15,8 +15,9 @@ function App() {
 
 	return (
 		<MainWrapper>
+			<GlobalStyles/>
 			<PurpleDiv Image={PurpleImage} ></PurpleDiv>
-			<CardBackside expire={expire}/>
+			<CardBackside expire={expire} />
 			<CardFrontside cardNumber={cardNumber} firstname={firstname} month={month} year={year} />
 			<CardDetails
 				cardNumber={cardNumber}
