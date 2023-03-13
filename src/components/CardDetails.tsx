@@ -176,6 +176,10 @@ const CardCompleteWrapper = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
+  @media (min-width: 1200px) {
+    width: 381px;
+  }
 `
 
 const SecondInput = styled.input`
@@ -203,6 +207,10 @@ const SecondInput = styled.input`
     font-weight: 500;
     color: #21092F;
     opacity: 0.25;
+  }
+  
+  @media (min-width: 1200px) {
+    width: 191px;
   }
 `
 
@@ -232,6 +240,11 @@ const FirstAndSecondInput = styled.input`
     color: #21092F;
     opacity: 0.25;
   }
+  
+  
+  @media (min-width: 1200px) {
+    width: 80px;
+  }
 `
 
 const ThreeInputWrapper = styled.div`
@@ -239,6 +252,10 @@ const ThreeInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
+  @media (min-width: 1200px) {
+    width: 381px;
+  }
 `
 
 const Button = styled.button`
@@ -257,6 +274,10 @@ const Button = styled.button`
   font-family: 'Space Grotesk', sans-serif;;
   line-height: 22.97px;
   font-weight: 500;
+  
+  @media (min-width: 1200px) {
+    width: 381px;
+  }
 `
 
 const Input = styled.input`
@@ -285,6 +306,10 @@ const Input = styled.input`
     color: #21092F;
     opacity: 0.25;
   }
+
+  @media (min-width: 1200px) {
+    width: 381px;
+  }
 `
 
 const Label = styled.label`
@@ -309,6 +334,13 @@ const CardDetailsWrapper = styled.div`
   position: absolute;
   margin-top: 331px;
   margin-left: 24px;
+
+  @media (min-width: 1200px) {
+    width: 381px;
+    height: 352px;
+    margin-top: 180px;
+    margin-left: 732px;
+  }
 `
 
 export default CardDetails;

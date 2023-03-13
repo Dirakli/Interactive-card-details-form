@@ -1,10 +1,11 @@
+import { useState } from "react"
 import { createGlobalStyle } from "styled-components"
 import styled from "styled-components"
 import PurpleImage from "/public/assets/bg-main-mobile.png"
+import DesktopImage from "/public/assets/bg-main-desktop.png"
 import CardBackside from "./components/CardBackside"
 import CardFrontside from "./components/CardFrontside"
 import CardDetails from "./components/CardDetails"
-import { useState } from "react"
 
 function App() {
 	const [cardNumber, setCardNumber] = useState<any>("");
@@ -15,8 +16,8 @@ function App() {
 
 	return (
 		<MainWrapper>
-			<GlobalStyles/>
-			<PurpleDiv Image={PurpleImage} ></PurpleDiv>
+			<GlobalStyles />
+			<PurpleDiv Image={PurpleImage} DesktopPurpleImage={DesktopImage}></PurpleDiv>
 			<CardBackside expire={expire} />
 			<CardFrontside cardNumber={cardNumber} firstname={firstname} month={month} year={year} />
 			<CardDetails
@@ -40,6 +41,12 @@ const PurpleDiv = styled.div<any>`
   position: absolute;
   height: 240px;
   background-image: url(${(props) => props.Image});
+
+  @media (min-width: 1200px) {
+	height: 900px;
+	width: 483px;
+	background-image: url(${(props) => props.DesktopPurpleImage});
+  }
 `
 
 const MainWrapper = styled.div`
@@ -49,6 +56,12 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  @media (min-width: 1200px) {
+	width: 100%;
+	height: 100vh;
+	flex-direction: row;
+  }
 `
 
 const GlobalStyles = createGlobalStyle`

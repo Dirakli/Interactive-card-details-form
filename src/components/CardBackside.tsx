@@ -18,6 +18,12 @@ function CardBackside({expire}: {expire: any}) {
    font-family: 'Space Grotesk', sans-serif;;
    letter-spacing: 1.29px;
    font-weight: 500;
+
+   @media (min-width: 1200px) {
+    font-size: 14px;
+    line-height: 17.86px;
+    letter-spacing: 2px;
+   }
  `   
 
  const SilverLine = styled.div`
@@ -30,6 +36,12 @@ function CardBackside({expire}: {expire: any}) {
    border-radius: 4px;
    background-color: rgba(173, 181, 190, 1);
    margin-top: 15.68px;
+
+   @media (min-width: 1200px) {
+    width: 361px;
+    height: 38px;
+    margin-top: 24px;
+   }
  `
 
  const BlackLine = styled.div`
@@ -37,6 +49,12 @@ function CardBackside({expire}: {expire: any}) {
    height: 34.6px;
    background-color: rgba(47, 47, 47, 1);
    margin-top: 32px;
+   
+   @media (min-width: 1200px) {
+    width: 100%;
+    height: 54px;
+    margin-top: 23px;
+   }
  `
 
  const BacksideWrapper = styled.div`
@@ -51,6 +69,13 @@ function CardBackside({expire}: {expire: any}) {
    background: linear-gradient(168.73deg, #FFFFFF 5%, #D2D3D9 91.69%);
    margin-left: 73px;
    margin-top: 32px;
+
+   @media (min-width: 1200px) {
+    width: 447px;
+    height: 245px;
+    margin-top: 380px;
+    margin-left: 200px;
+   }
  `
 
 export default CardBackside;
