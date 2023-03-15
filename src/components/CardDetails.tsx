@@ -13,7 +13,7 @@ function CardDetails({ expire, setExpire, setCardNumber, cardNumber, setFirstnam
 
 
   function handleComplete() {
-    if (expire !== "" && cardNumber !== "" && firstname !== "" && month !== "" && year !== "")
+    if (expire !== "" && cardNumber !== "" && firstname !== "" && month !== "" && year !== "" && cardNumber.length === 19)
       setHide(true);
   }
 
